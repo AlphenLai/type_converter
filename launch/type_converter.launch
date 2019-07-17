@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch> 
+  
+  <!-- data type converter -->
+  <node pkg="type_converter" type="type_converter" name="pose_and_tf" output="screen" />  
+</launch>
