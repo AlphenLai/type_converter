@@ -9,6 +9,9 @@ project(type_converter)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  rospy
+  tf
+  geometry_msgs
   std_msgs
 )
 
@@ -196,3 +199,13 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+add_executable(type_converter
+  src/main.cpp
+)
+
+target_link_libraries(type_converter
+  ${OpenCV_LIBS}
+  ${ROS_LIBRARIES}
+  ${catkin_LIBRARIES}
+)
