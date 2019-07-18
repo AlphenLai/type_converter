@@ -1,10 +1,12 @@
 #include <ros/ros.h>
 #include <std_msgs/String.h>
-#include "type_converter.h"
+//#include "type_converter.h"
 #include <sstream>
 #include <tf/transform_listener.h>
 #include <tf/transform_broadcaster.h>
 #include <geometry_msgs/PoseStamped.h>
+
+void local_pose_callback(const geometry_msgs::PoseStamped::ConstPtr& pose_msg);
 
 int main(int argc, char **argv)
 {
@@ -24,6 +26,7 @@ int main(int argc, char **argv)
     tf::StampedTransform transform;
     try
     {
+      listener.waitForTransform("camera_position", "world", ros::Time(0), ros::Duration(10.0) );
       listener.lookupTransform("camera_position", "world", ros::Time(0), transform);
     }
     catch(tf::TransformException ex)
